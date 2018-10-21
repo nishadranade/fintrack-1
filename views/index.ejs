@@ -1,0 +1,471 @@
+<!DOCTYPE html><html lang='en' class=''>
+<head><script src='//static.codepen.io/assets/editor/live/console_runner-ce3034e6bde3912cc25f83cccb7caa2b0f976196f2f2d52303a462c826d54a73.js'></script><script src='//static.codepen.io/assets/editor/live/css_reload-2a5c7ad0fe826f66e054c6020c99c1e1c63210256b6ba07eb41d7a4cb0d0adab.js'></script><meta charset='UTF-8'><meta name="robots" content="noindex"><link rel="shortcut icon" type="image/x-icon" href="//static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="//static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/MilanMilosev/pen/JdgRpB" />
+<link href='https://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css'><link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Palanquin:400,100,200,300'>
+<style class="cp-pen-styles">body {
+  background-color: darkslategray;
+  color: #fff;
+  margin: 0;
+}
+#shark-container {
+  position: relative;
+  width: 400px;
+  text-align: center;
+  margin: 0 auto;
+}
+#shark-container .shark-line {
+  stroke: white;
+  perspective: 1000px;
+}
+
+.footer-name {
+  transform: scale(0);
+  position: absolute;
+  bottom: 40px;
+  left: 57px;
+  color: white;
+  font-size: 30px;
+  font-family: 'Raleway', sans-serif;
+}
+
+#content {
+  position: absolute;
+  height: 50px;
+  width: 300px;
+  margin-left: 170px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+#content.on {
+  -webkit-animation-name: in-out;
+  animation-name: in-out;
+  -webkit-animation-duration: 0.7s;
+  animation-duration: 0.7s;
+  -webkit-animation-timing-function: linear;
+  animation-timing-function: linear;
+  -webkit-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+}
+
+input {
+  box-sizing: border-box;
+  position:absolute;
+  top:300px;
+  left:0px;
+  width: 50px;
+  height: 50px;
+  border: 4px solid #FFFFFF;
+  border-radius: 50%;
+  background: none;
+  color: #fff;
+  font-size: 16px;
+  font-weight: 400;
+  font-family: Roboto;
+  outline: 0;
+  -webkit-transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out, padding 0.2s;
+  transition: width 0.4s ease-in-out, border-radius 0.8s ease-in-out, padding 0.2s;
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+  -webkit-transform: translate(-100%, -50%);
+  -ms-transform: translate(-100%, -50%);
+  transform: translate(-100%, -50%);
+}
+
+.search {
+  top:300px;
+  background: none;
+  position: absolute;
+  left: 0;
+  height: 50px;
+  width: 50px;
+  padding: 0;
+  border-radius: 100%;
+  outline: 0;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+  -webkit-transform: translate(-100%, -50%);
+  -ms-transform: translate(-100%, -50%);
+  transform: translate(-100%, -50%);
+}
+
+.search:before {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 4px;
+  background-color: #fff;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  margin-top: 26px;
+  margin-left: 17px;
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.close {
+  -webkit-transition: 0.4s ease-in-out;
+  transition: 0.4s ease-in-out;
+  -webkit-transition-delay: 0.4s;
+  transition-delay: 0.4s;
+}
+
+.close:before {
+  content: "";
+  position: absolute;
+  left:440px;
+  width: 27px;
+  height: 4px;
+  margin-top: -1px;
+  margin-left: -13px;
+  background-color: #fff;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  -webkit-transition: 0.2s ease-in-out;
+  transition: 0.2s ease-in-out;
+}
+
+.close:after {
+  content: "";
+  position: absolute;
+  width: 27px;
+  height: 4px;
+  left:440px;
+  background-color: #fff;
+  margin-top: -1px;
+  margin-left: -13px;
+  cursor: pointer;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.square {
+  box-sizing: border-box;
+  padding: 0 40px 0 10px;
+  width: 800px;
+  height: 50px;
+  left: 100px;
+  border: 4px solid #FFFFFF;
+  border-radius: 25px;
+  background: none;
+  color: #fff;
+  font-family: Roboto;
+  font-size: 16px;
+  font-weight: 400;
+  outline: 0;
+  -webkit-transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, padding 0.2s;
+  transition: width 0.4s ease-in-out, border-radius 0.4s ease-in-out, padding 0.2s;
+  -webkit-transition-delay: 0.4s, 0s, 0.4s;
+  transition-delay: 0.4s, 0s, 0.4s;
+  -webkit-transform: translate(-60%, -50%);
+  -ms-transform: translate(-60%, -50%);
+  transform: translate(-60%, -50%);
+}
+.txt {
+  text-align: center;
+  font-family: 'Roboto';
+  font-size: 12vmin;
+  font-weight: 700;
+  animation: netflix_style 3.5s;
+  outline: none;
+  white-space: nowrap;
+}
+
+@keyframes netflix_style {
+  0% {
+    text-shadow: 0px 0px transparent, 1px 1px #aaa, 2px 2px #aaa, 3px 3px #aaa, 4px 4px #aaa, 5px 5px #aaa, 6px 6px #aaa, 7px 7px #aaa, 8px 8px #aaa, 9px 9px #aaa, 10px 10px #aaa, 11px 11px #aaa, 12px 12px #aaa, 13px 13px #aaa, 14px 14px #aaa, 15px 15px #aaa, 16px 16px #aaa, 17px 17px #aaa, 18px 18px #aaa, 19px 19px #aaa, 20px 20px #aaa, 21px 21px #aaa, 22px 22px #aaa, 23px 23px #aaa, 24px 24px #aaa, 25px 25px #aaa, 26px 26px #aaa, 27px 27px #aaa, 28px 28px #aaa, 29px 29px #aaa, 30px 30px #aaa, 31px 31px #aaa, 32px 32px #aaa, 33px 33px #aaa, 34px 34px #aaa, 35px 35px #aaa, 36px 36px #aaa, 37px 37px #aaa, 38px 38px #aaa, 39px 39px #aaa, 40px 40px #aaa, 41px 41px #aaa, 42px 42px #aaa, 43px 43px #aaa, 44px 44px #aaa, 45px 45px #aaa, 46px 46px #aaa, 47px 47px #aaa, 48px 48px #aaa, 49px 49px #aaa, 50px 50px #aaa, 51px 51px #aaa, 52px 52px #aaa, 53px 53px #aaa, 54px 54px #aaa, 55px 55px #aaa, 56px 56px #aaa, 57px 57px #aaa, 58px 58px #aaa, 59px 59px #aaa, 60px 60px #aaa, 61px 61px #aaa, 62px 62px #aaa, 63px 63px #aaa, 64px 64px #aaa, 65px 65px #aaa, 66px 66px #aaa, 67px 67px #aaa, 68px 68px #aaa, 69px 69px #aaa, 70px 70px #aaa, 71px 71px #aaa, 72px 72px #aaa, 73px 73px #aaa, 74px 74px #aaa, 75px 75px #aaa, 76px 76px #aaa, 77px 77px #aaa, 78px 78px #aaa, 79px 79px #aaa, 80px 80px #aaa, 81px 81px #aaa, 82px 82px #aaa, 83px 83px #aaa, 84px 84px #aaa, 85px 85px #aaa, 86px 86px #aaa, 87px 87px #aaa, 88px 88px #aaa, 89px 89px #aaa, 90px 90px #aaa, 91px 91px #aaa, 92px 92px #aaa, 93px 93px #aaa, 94px 94px #aaa, 95px 95px #aaa, 96px 96px #aaa, 97px 97px #aaa, 98px 98px #aaa, 99px 99px #aaa, 100px 100px #aaa;
+    color: #f3f3f3;
+    transform: scale(1.5, 1.5);
+  }
+  10% {
+    text-shadow: 0px 0px transparent, 1px 1.5px #aaa, 2px 3px #aaa, 3px 4.5px #aaa, 4px 6px #aaa, 5px 7.5px #aaa, 6px 9px #aaa, 7px 10.5px #aaa, 8px 12px #aaa, 9px 13.5px #aaa, 10px 15px #aaa, 11px 16.5px #aaa, 12px 18px #aaa, 13px 19.5px #aaa, 14px 21px #aaa, 15px 22.5px #aaa, 16px 24px #aaa, 17px 25.5px #aaa, 18px 27px #aaa, 19px 28.5px #aaa, 20px 30px #aaa, 21px 31.5px #aaa, 22px 33px #aaa, 23px 34.5px #aaa, 24px 36px #aaa, 25px 37.5px #aaa, 26px 39px #aaa, 27px 40.5px #aaa, 28px 42px #aaa, 29px 43.5px #aaa, 30px 45px #aaa, 31px 46.5px #aaa, 32px 48px #aaa, 33px 49.5px #aaa, 34px 51px #aaa, 35px 52.5px #aaa, 36px 54px #aaa, 37px 55.5px #aaa, 38px 57px #aaa, 39px 58.5px #aaa, 40px 60px #aaa, 41px 61.5px #aaa, 42px 63px #aaa, 43px 64.5px #aaa, 44px 66px #aaa, 45px 67.5px #aaa, 46px 69px #aaa, 47px 70.5px #aaa, 48px 72px #aaa, 49px 73.5px #aaa, 50px 75px #aaa, 51px 76.5px #aaa, 52px 78px #aaa, 53px 79.5px #aaa, 54px 81px #aaa, 55px 82.5px #aaa, 56px 84px #aaa, 57px 85.5px #aaa, 58px 87px #aaa, 59px 88.5px #aaa, 60px 90px #aaa, 61px 91.5px #aaa, 62px 93px #aaa, 63px 94.5px #aaa, 64px 96px #aaa, 65px 97.5px #aaa, 66px 99px #aaa, 67px 100.5px #aaa, 68px 102px #aaa, 69px 103.5px #aaa, 70px 105px #aaa, 71px 106.5px #aaa, 72px 108px #aaa, 73px 109.5px #aaa, 74px 111px #aaa, 75px 112.5px #aaa, 76px 114px #aaa, 77px 115.5px #aaa, 78px 117px #aaa, 79px 118.5px #aaa, 80px 120px #aaa, 81px 121.5px #aaa, 82px 123px #aaa, 83px 124.5px #aaa, 84px 126px #aaa, 85px 127.5px #aaa, 86px 129px #aaa, 87px 130.5px #aaa, 88px 132px #aaa, 89px 133.5px #aaa, 90px 135px #aaa, 91px 136.5px #aaa, 92px 138px #aaa, 93px 139.5px #aaa, 94px 141px #aaa, 95px 142.5px #aaa, 96px 144px #aaa, 97px 145.5px #aaa, 98px 147px #aaa, 99px 148.5px #aaa, 100px 150px #aaa;
+    color: #f3f3f3;
+    transform: scale(1.5, 1.5);
+  }
+  15% {
+    color: white;
+  }
+  20% {
+    color: white;
+    text-shadow: none;
+    transform: scale(1.1, 1.1);
+  }
+  75% {
+    color:white;
+    opacity: 1;
+  }
+  80% {
+    opacity: 100;
+    color: white;
+    transform: scale(0.85, 0.9);
+  }
+  100% {
+    color: white;
+    opacity: 100;
+  }
+}
+
+.btn-cont {
+  text-align: center;
+  margin-top: 200px;
+}
+.btn-cont .btn {
+  position: relative;
+  padding: 20px 70px;
+  border: 1px solid white;
+  color: white;
+  text-decoration: none;
+  font-size: 1.125em;
+  font-family: 'Open Sans', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  -webkit-font-smoothing: antialiased;
+}
+.btn-cont .btn:hover {
+  border: none;
+}
+.btn-cont .btn:hover .line-1 {
+  -webkit-animation: move1 1500ms infinite ease;
+          animation: move1 1500ms infinite ease;
+}
+.btn-cont .btn:hover .line-2 {
+  -webkit-animation: move2 1500ms infinite ease;
+          animation: move2 1500ms infinite ease;
+}
+.btn-cont .btn:hover .line-3 {
+  -webkit-animation: move3 1500ms infinite ease;
+          animation: move3 1500ms infinite ease;
+}
+.btn-cont .btn:hover .line-4 {
+  -webkit-animation: move4 1500ms infinite ease;
+          animation: move4 1500ms infinite ease;
+}
+.btn-cont .line-1 {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 1px;
+  background-color: white;
+  left: 0;
+  bottom: 0;
+}
+.btn-cont .line-2 {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  background-color: white;
+  left: 0;
+  top: 0;
+}
+.btn-cont .line-3 {
+  content: "";
+  display: block;
+  position: absolute;
+  width: 1px;
+  background-color: white;
+  right: 0;
+  top: 0;
+}
+.btn-cont .line-4 {
+  content: "";
+  display: block;
+  position: absolute;
+  height: 1px;
+  background-color: white;
+  right: 0;
+  bottom: 0;
+}
+
+@-webkit-keyframes move1 {
+  0% {
+    height: 100%;
+    bottom: 0;
+  }
+  54% {
+    height: 0;
+    bottom: 100%;
+  }
+  55% {
+    height: 0;
+    bottom: 0;
+  }
+  100% {
+    height: 100%;
+    bottom: 0;
+  }
+}
+
+@keyframes move1 {
+  0% {
+    height: 100%;
+    bottom: 0;
+  }
+  54% {
+    height: 0;
+    bottom: 100%;
+  }
+  55% {
+    height: 0;
+    bottom: 0;
+  }
+  100% {
+    height: 100%;
+    bottom: 0;
+  }
+}
+@-webkit-keyframes move2 {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+@keyframes move2 {
+  0% {
+    width: 0;
+    left: 0;
+  }
+  50% {
+    width: 100%;
+    left: 0;
+  }
+  100% {
+    width: 0;
+    left: 100%;
+  }
+}
+@-webkit-keyframes move3 {
+  0% {
+    height: 100%;
+    top: 0;
+  }
+  54% {
+    height: 0;
+    top: 100%;
+  }
+  55% {
+    height: 0;
+    top: 0;
+  }
+  100% {
+    height: 100%;
+    top: 0;
+  }
+}
+@keyframes move3 {
+  0% {
+    height: 100%;
+    top: 0;
+  }
+  54% {
+    height: 0;
+    top: 100%;
+  }
+  55% {
+    height: 0;
+    top: 0;
+  }
+  100% {
+    height: 100%;
+    top: 0;
+  }
+}
+@-webkit-keyframes move4 {
+  0% {
+    width: 0;
+    right: 0;
+  }
+  55% {
+    width: 100%;
+    right: 0;
+  }
+  100% {
+    width: 0;
+    right: 100%;
+  }
+}
+@keyframes move4 {
+  0% {
+    width: 0;
+    right: 0;
+  }
+  55% {
+    width: 100%;
+    right: 0;
+  }
+  100% {
+    width: 0;
+    right: 100%;
+  }
+}
+</style></head><body>
+  <div id="shark-container">
+ <svg id="shark" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="400px"
+   height="400px" viewBox="0 0 1758 1452" enable-background="new 0 0 1758 1452" xml:space="preserve">
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="881.971" y1="185.494" x2="824.06" y2="435.564"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="939.881" y1="435.564" x2="881.971" y2="185.494"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="1256.639" y1="606.665" x2="939.881" y2="435.564"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="1256.639" y1="841.825" x2="1256.639" y2="606.665"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="1652.371" y1="976.07" x2="1256.639" y2="841.825"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="1211.894" y1="964.662" x2="1652.371" y2="976.07"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="881.971" y1="1266.506" x2="1211.894" y2="964.662"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="552.047" y1="964.662" x2="881.971" y2="1266.506"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="111.57" y1="976.07" x2="552.047" y2="964.662"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="507.302" y1="841.825" x2="111.57" y2="976.07"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="507.302" y1="606.665" x2="507.302" y2="841.825"/>
+  <line class="shark-line" fill="none" stroke="#000000" stroke-width="8" stroke-miterlimit="10" x1="824.06" y1="435.564" x2="507.302" y2="606.665"/>
+  <polygon class="shark-eye" fill="red" points="610.84,876.922 791.012,1083.997 679.875,1026.659  "/>
+  <polygon class="shark-eye" fill="red" points="1153.101,876.922 972.929,1083.997 1084.072,1026.659   "/>
+</svg>
+
+<div class="txt" contenteditable="true">
+  FinTrack
+</div>
+
+<br></br>
+<br></br><br></br>
+<br></br><br></br>
+
+<form id="content" action="/search" method="POST" >
+  <input type="text" name="input" class="input" placeholder='         Enter a company...'>
+  <button type="reset" class="search"></button>
+</form>
+<div class='btn-cont'>
+  <a class='btn' href='results.html'>
+    What do we do?
+    <span class='line-1'></span>
+    <span class='line-2'></span>
+    <span class='line-3'></span>
+    <span class='line-4'></span>
+  </a>
+</div>
+<script src='//static.codepen.io/assets/common/stopExecutionOnTimeout-41c52890748cd7143004e05d3c5f786c66b19939c4500ce446314d1748483e13.js'></script><script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script src='https://codepen.io/MilanMilosev/pen/EoLBjo.js'></script>
+<script >// -
+function expand() {
+  $(".search").toggleClass("close");
+  $(".input").toggleClass("square");
+  if ($('.search').hasClass('close')) {
+    $('input').focus();
+  } else {
+    $('input').blur();
+  }
+}
+$('button').on('click', expand);
+//# sourceURL=pen.js
+</script>
+</body></html>
